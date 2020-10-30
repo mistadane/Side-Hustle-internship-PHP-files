@@ -9,7 +9,9 @@ include('process.php');
 			$n = mysqli_fetch_array($record);
 			$name = $n['name'];
 			$age = $n['age'];
-	
+			$username = $n['username'];
+			$address = $n['address'];
+			
 
 	}
 ?>
@@ -20,7 +22,17 @@ include('process.php');
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	
+
+<?php 
+	if(isset($_SESSION["msg"])): ?>
+		<div class="msg">
+		  <?php 
+			echo $_SESSION["msg"];
+			unset($_SESSION["msg"]);
+		  ?>
+		</div>
+
+	<?php endif ?>
 
 <?php $results = mysqli_query($con, "SELECT * FROM crudtable"); ?>
 

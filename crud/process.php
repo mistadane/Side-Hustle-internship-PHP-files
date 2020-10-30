@@ -1,5 +1,6 @@
 <?php 
 	include 'connect.php';
+	session_start();
 
 	// initialize variables
 	$name = "";
@@ -8,6 +9,7 @@
 	$address = "";
 	$id = 0;
 	$update = false;
+	
 	//For Insert
 	if (isset($_POST['save'])) {
 		$name = $_POST['name'];
@@ -15,7 +17,8 @@
 		$username = $_POST['username'];
 		$address = $_POST['address'];
 
-		mysqli_query($con, "INSERT INTO crudtable (name, age, username, address) VALUES ('$name', '$age', '$username', '$address')"); 
+		mysqli_query($con, "INSERT INTO crudtable (name, age, username, address) VALUES ('$name', '$age', '$username', '$address')");
+		$_SESSION["msg"]="User details saved";  
 		header('location: index.php');
 	}
 
@@ -28,6 +31,7 @@
 		$address = $_POST['address'];
 
 		mysqli_query($con, "UPDATE crudtable SET name='$name', age='$age', username= $username, address= $address WHERE id=$id");
+		$_SESSION["msg"]="User details updated"; 
 		header('location: index.php');
 	}
 	//For Delete
