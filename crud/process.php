@@ -30,7 +30,7 @@
 		$username = $_POST['username'];
 		$address = $_POST['address'];
 
-		mysqli_query($con, "UPDATE crudtable SET name='$name', age='$age', username= $username, address= $address WHERE id=$id");
+		mysqli_query($con, "UPDATE crudtable SET name='$name', age='$age', username= '$username', address= '$address' WHERE id=$id");
 		$_SESSION["msg"]="User details updated"; 
 		header('location: index.php');
 	}
