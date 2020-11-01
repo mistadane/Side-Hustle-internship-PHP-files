@@ -11,6 +11,7 @@ include('process.php');
 			$age = $n['age'];
 			$username = $n['username'];
 			$address = $n['address'];
+			$image = $n['image'];
 			
 
 	}
@@ -39,6 +40,7 @@ include('process.php');
 <table>
 	<thead>
 		<tr>
+			<th>Picture</th>
 			<th>Name</th>
 			<th>Age</th>
 			<th>Username</th>
@@ -49,6 +51,7 @@ include('process.php');
 	
 	<?php while ($row = mysqli_fetch_array($results)) { ?>
 		<tr>
+			<td><img src="<?php echo "images/".$row['image']?>" alt="No image" width='40' height='40'></td>
 			<td><?php echo $row['name']; ?></td>
 			<td><?php echo $row['age']; ?></td>
 			<td><?php echo $row['username']; ?></td>
@@ -65,7 +68,7 @@ include('process.php');
 	
 
 
-<form method="post" action="process.php" >
+<form method="post" action="process.php" enctype="multipart/form-data">
 
 	<input type="hidden" name="id" value="<?php echo $id; ?>">
 
@@ -84,6 +87,10 @@ include('process.php');
 	<div class="input-group">
 		<label>Address</label>
 		<input type="text" name="address" value="<?php echo $address; ?>">
+	</div>
+	<div class="input-group">
+		<label>Image</label>
+		<input type="file" name="file" value="<?php echo "images/ ".$image; ?>">
 	</div>
 	<div class="input-group">
 
